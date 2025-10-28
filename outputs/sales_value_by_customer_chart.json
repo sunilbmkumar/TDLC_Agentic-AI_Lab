@@ -1,0 +1,16 @@
+{
+  "chart_type": "bar",
+  "title": "Total Sales Value by Customer",
+  "x_axis": "Customer",
+  "y_axis": "Sales Value ($)",
+  "data": [
+    {
+      "customer": "ACME Corp",
+      "sales_value": 10300.0
+    },
+    {
+      "customer": "Zenith Ltd",
+      "sales_value": 2400.0
+    }
+  ]
+}

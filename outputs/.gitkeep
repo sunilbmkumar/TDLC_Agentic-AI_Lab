@@ -1,0 +1,4 @@
+# This directory will contain agent outputs
+# validation_results.json
+# sales_order_output.csv
+# email_responses.log

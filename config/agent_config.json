@@ -1,0 +1,44 @@
+{
+  "agents": {
+    "po_reader": {
+      "name": "PO Reader Agent",
+      "description": "Reads and displays customer purchase orders",
+      "input_files": ["data/customer_orders.csv"],
+      "output_format": "console_table"
+    },
+    "validation": {
+      "name": "Validation Agent", 
+      "description": "Validates orders against master SKU data",
+      "input_files": ["data/customer_orders.csv", "data/master_sku.csv"],
+      "output_format": "json",
+      "validation_rules": {
+        "price_deviation_threshold": 0.10
+      }
+    },
+    "exception_response": {
+      "name": "Exception Response Generator",
+      "description": "Generates email responses for validation exceptions",
+      "input_files": ["outputs/validation_results.json"],
+      "output_format": "email_log"
+    },
+    "so_creator": {
+      "name": "Sales Order Creator",
+      "description": "Creates sales orders from validated purchase orders",
+      "input_files": ["outputs/validation_results.json", "data/customer_orders.csv"],
+      "output_format": "csv"
+    },
+    "summary_insights": {
+      "name": "Summary & Insights Agent",
+      "description": "Generates summary reports and business insights",
+      "input_files": ["outputs/validation_results.json", "outputs/sales_order_output.csv"],
+      "output_format": "console_report"
+    }
+  },
+  "execution_order": [
+    "po_reader",
+    "validation", 
+    "exception_response",
+    "so_creator",
+    "summary_insights"
+  ]
+}

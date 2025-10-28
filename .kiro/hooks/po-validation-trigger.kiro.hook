@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "PO Validation Trigger",
+  "description": "When a new Purchase Order (PO) file is saved in the system, automatically trigger the Validation Agent to perform field-level validation, update the UI dashboard with results, send notifications for exceptions, and generate PO acknowledgments",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "data/customer_orders.csv",
+      "data/*.csv"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new Purchase Order file has been detected. Please execute the following workflow: 1) Trigger the Validation Agent to read the PO file and perform field-level validation (PO number, quantities, customer code), 2) Update the UI dashboard with validation results marking records as \"Valid\" or \"Exception\", 3) If exceptions are found, send notifications to users with error summaries, 4) Generate a \"PO Acknowledgment\" entry in the output section, 5) Continue the normal process flow and update the UI accordingly. Use the orchestration system to coordinate between the validation agent, exception response agent, and po acknowledgment agent as needed."
+  }
+}

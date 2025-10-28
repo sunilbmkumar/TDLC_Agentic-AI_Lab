@@ -1,0 +1,136 @@
+{
+  "coordination_status": {
+    "completed_agents": [
+      "so_creator",
+      "summary_insights",
+      "exception_response",
+      "po_reader",
+      "validation"
+    ],
+    "failed_agents": [],
+    "running_agents": [],
+    "agent_monitoring": {
+      "po_reader": {
+        "status": "completed",
+        "progress_percentage": 100.0,
+        "current_operation": "Completed successfully",
+        "start_time": "2025-10-28T06:27:29.988748",
+        "last_heartbeat": "2025-10-28T06:27:30.000975"
+      },
+      "validation": {
+        "status": "completed",
+        "progress_percentage": 100.0,
+        "current_operation": "Completed successfully",
+        "start_time": "2025-10-28T06:27:30.001854",
+        "last_heartbeat": "2025-10-28T06:27:30.012369"
+      },
+      "exception_response": {
+        "status": "completed",
+        "progress_percentage": 100.0,
+        "current_operation": "Completed successfully",
+        "start_time": "2025-10-28T06:27:30.012895",
+        "last_heartbeat": "2025-10-28T06:27:30.418103"
+      },
+      "so_creator": {
+        "status": "completed",
+        "progress_percentage": 100.0,
+        "current_operation": "Completed successfully",
+        "start_time": "2025-10-28T06:27:30.014474",
+        "last_heartbeat": "2025-10-28T06:27:30.030684"
+      },
+      "summary_insights": {
+        "status": "completed",
+        "progress_percentage": 100.0,
+        "current_operation": "Completed successfully",
+        "start_time": "2025-10-28T06:27:30.419017",
+        "last_heartbeat": "2025-10-28T06:27:30.430766"
+      }
+    },
+    "dependencies": {
+      "po_reader": {
+        "depends_on": [],
+        "can_run_parallel": false,
+        "priority": 100
+      },
+      "validation": {
+        "depends_on": [
+          "po_reader"
+        ],
+        "can_run_parallel": false,
+        "priority": 90
+      },
+      "exception_response": {
+        "depends_on": [
+          "validation"
+        ],
+        "can_run_parallel": true,
+        "priority": 80
+      },
+      "so_creator": {
+        "depends_on": [
+          "validation"
+        ],
+        "can_run_parallel": true,
+        "priority": 80
+      },
+      "summary_insights": {
+        "depends_on": [
+          "exception_response",
+          "so_creator"
+        ],
+        "can_run_parallel": false,
+        "priority": 70
+      }
+    }
+  },
+  "execution_results": {
+    "po_reader": {
+      "agent_name": "po_reader",
+      "status": "completed",
+      "execution_time": 0.010776,
+      "error_message": null,
+      "output_files": null
+    },
+    "validation": {
+      "agent_name": "validation",
+      "status": "completed",
+      "execution_time": 0.010365,
+      "error_message": null,
+      "output_files": [
+        "outputs/validation_results_simple.json",
+        "outputs/validation_results_detailed.json"
+      ]
+    },
+    "so_creator": {
+      "agent_name": "so_creator",
+      "status": "completed",
+      "execution_time": 0.014476,
+      "error_message": null,
+      "output_files": [
+        "outputs/sales_order_output.csv",
+        "outputs/sales_value_by_customer_chart.json",
+        "outputs/exception_count_by_customer_chart.json"
+      ]
+    },
+    "exception_response": {
+      "agent_name": "exception_response",
+      "status": "completed",
+      "execution_time": 0.403287,
+      "error_message": null,
+      "output_files": [
+        "outputs/exception_emails.json"
+      ]
+    },
+    "summary_insights": {
+      "agent_name": "summary_insights",
+      "status": "completed",
+      "execution_time": 0.011554,
+      "error_message": null,
+      "output_files": [
+        "outputs/executive_summary_report.txt",
+        "outputs/executive_dashboard.json"
+      ]
+    }
+  },
+  "timestamp": "2025-10-28T06:27:30.433418"
+}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}PO Acknowledgments - PO to SO Agent Demo{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>📋 Purchase Order Acknowledgments</h2>
+    
+    {% if summary %}
+    <div style="margin-bottom: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+        <h3>Summary:</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: bold; color: #28a745;">{{ summary.total_orders or 0 }}</div>
+                <div style="color: #666; font-size: 0.9rem;">Total Orders</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: bold; color: #28a745;">{{ summary.accepted_orders or 0 }}</div>
+                <div style="color: #666; font-size: 0.9rem;">Accepted</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: bold; color: #dc3545;">{{ summary.rejected_orders or 0 }}</div>
+                <div style="color: #666; font-size: 0.9rem;">Rejected</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: bold; color: #667eea;">{{ "%.1f"|format(summary.acceptance_rate or 0) }}%</div>
+                <div style="color: #666; font-size: 0.9rem;">Acceptance Rate</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: bold; color: #28a745;">${{ "%.2f"|format(summary.accepted_order_value or 0) }}</div>
+                <div style="color: #666; font-size: 0.9rem;">Accepted Value</div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if acknowledgments %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PO Number</th>
+                <th>Customer</th>
+                <th>SKU</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Ack Date</th>
+                <th>Ship Date</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ack in acknowledgments %}
+            <tr>
+                <td><strong>{{ ack.PO_Number }}</strong></td>
+                <td>{{ ack.Customer_Name }}</td>
+                <td>{{ ack.SKU }}</td>
+                <td>{{ ack.Quantity_Ordered }}</td>
+                <td>${{ "%.2f"|format(ack.Unit_Price|float) }}</td>
+                <td><strong>${{ "%.2f"|format(ack.Total_Amount|float) }}</strong></td>
+                <td>
+                    {% if ack.Acknowledgment_Status == 'ACCEPTED' %}
+                        <span class="status-valid">✅ ACCEPTED</span>
+                    {% else %}
+                        <span class="status-exception">❌ REJECTED</span>
+                    {% endif %}
+                </td>
+                <td>{{ ack.Acknowledgment_Date }}</td>
+                <td>
+                    {% if ack.Estimated_Ship_Date %}
+                        {{ ack.Estimated_Ship_Date }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td style="max-width: 200px; word-wrap: break-word;">
+                    {{ ack.Notes }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% if summary %}
+    <div style="margin-top: 1.5rem; padding: 1rem; background: #e7f3ff; border-radius: 4px;">
+        <h4>📊 Acknowledgment Details:</h4>
+        <p><strong>Generated:</strong> {{ summary.generated_date }}</p>
+        <p><strong>Total Order Value:</strong> ${{ "%.2f"|format(summary.total_order_value or 0) }}</p>
+        <p><strong>Rejected Value:</strong> ${{ "%.2f"|format(summary.rejected_order_value or 0) }}</p>
+        
+        {% if summary.acknowledgment_files %}
+        <h5 style="margin-top: 1rem;">📁 Available Files:</h5>
+        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            {% for file in summary.acknowledgment_files %}
+            <li>{{ file }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    {% else %}
+    <div class="empty-state">
+        <h3>No PO Acknowledgments</h3>
+        <p>PO acknowledgments will appear here after running the acknowledgment agent.</p>
+        <p style="margin-top: 1rem; color: #999;">
+            Execute: <code>python test_po_acknowledgment.py</code> to generate acknowledgments
+        </p>
+        <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+            <h4>What are PO Acknowledgments?</h4>
+            <p>Purchase Order Acknowledgments confirm receipt and acceptance/rejection of customer orders based on validation results.</p>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li><strong>ACCEPTED:</strong> Orders that pass validation with estimated ship dates</li>
+                <li><strong>REJECTED:</strong> Orders with validation issues (missing SKU, price deviations)</li>
+                <li><strong>Amazon Compatible:</strong> Includes Amazon marketplace format</li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

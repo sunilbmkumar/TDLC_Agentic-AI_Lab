@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - PO to SO Agent Demo{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card">
+        <span class="stat-number">{{ summary.total_orders }}</span>
+        <div class="stat-label">Total Orders</div>
+    </div>
+    
+    <div class="stat-card">
+        <span class="stat-number">{{ summary.valid_orders }}</span>
+        <div class="stat-label">Valid Orders</div>
+    </div>
+    
+    <div class="stat-card">
+        <span class="stat-number">{{ summary.exception_orders }}</span>
+        <div class="stat-label">Exception Orders</div>
+    </div>
+    
+    <div class="stat-card">
+        <span class="stat-number">{{ summary.sales_orders_created }}</span>
+        <div class="stat-label">Sales Orders Created</div>
+    </div>
+    
+    <div class="stat-card">
+        <span class="stat-number">${{ "%.2f"|format(summary.total_sales_value) }}</span>
+        <div class="stat-label">Total Sales Value</div>
+    </div>
+    
+    <div class="stat-card">
+        <span class="stat-number">{{ summary.exception_emails_sent }}</span>
+        <div class="stat-label">Exception Emails</div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📊 Workflow Overview</h2>
+    <p><strong>Last Updated:</strong> {{ summary.last_updated }}</p>
+    
+    <div style="margin-top: 1.5rem;">
+        <h3>Process Flow Status:</h3>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+            <div style="padding: 0.5rem 1rem; background: #d4edda; color: #155724; border-radius: 4px;">
+                📥 PO Reader: Complete
+            </div>
+            <div style="padding: 0.5rem 1rem; background: #d4edda; color: #155724; border-radius: 4px;">
+                ✅ Validation: {{ summary.total_orders }} orders processed
+            </div>
+            {% if summary.exception_orders > 0 %}
+            <div style="padding: 0.5rem 1rem; background: #fff3cd; color: #856404; border-radius: 4px;">
+                ⚠️ Exceptions: {{ summary.exception_orders }} found
+            </div>
+            {% endif %}
+            {% if summary.sales_orders_created > 0 %}
+            <div style="padding: 0.5rem 1rem; background: #d4edda; color: #155724; border-radius: 4px;">
+                💰 SO Creator: {{ summary.sales_orders_created }} orders created
+            </div>
+            {% endif %}
+            <div style="padding: 0.5rem 1rem; background: #d4edda; color: #155724; border-radius: 4px;">
+                📧 Email Handler: {{ summary.exception_emails_sent }} emails sent
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% if summary.total_orders == 0 %}
+<div class="empty-state">
+    <h3>No Data Available</h3>
+    <p>Run the PO to SO workflow to see results here.</p>
+    <p style="margin-top: 1rem; color: #999;">
+        Execute: <code>python main.py</code> or <code>python setup.py && python main.py</code>
+    </p>
+</div>
+{% endif %}
+{% endblock %}

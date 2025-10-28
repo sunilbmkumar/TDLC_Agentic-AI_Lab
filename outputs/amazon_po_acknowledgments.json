@@ -1,0 +1,90 @@
+[
+  {
+    "MessageType": "OrderAcknowledgement",
+    "MerchantOrderID": "PO1001",
+    "AmazonOrderID": "AMZ-PO1001-20251027",
+    "StatusCode": "AC",
+    "ItemLevelAcknowledgements": [
+      {
+        "AmazonOrderItemCode": "SKU001-001",
+        "MerchantOrderItemID": "PO1001",
+        "CancelledQuantity": 0,
+        "AcknowledgedQuantity": 100,
+        "PerUnitPrice": 45.5,
+        "PerUnitDeclaredValue": 45.5
+      }
+    ],
+    "ExpectedShipDate": "2025-10-30",
+    "ExpectedDeliveryDate": "2025-11-03",
+    "CarrierCode": "UPS",
+    "CarrierName": "United Parcel Service",
+    "ShippingMethod": "Standard",
+    "ProcessedDateTime": "2025-10-27T15:12:04Z"
+  },
+  {
+    "MessageType": "OrderAcknowledgement",
+    "MerchantOrderID": "PO1002",
+    "AmazonOrderID": "AMZ-PO1002-20251027",
+    "StatusCode": "AC",
+    "ItemLevelAcknowledgements": [
+      {
+        "AmazonOrderItemCode": "SKU002-001",
+        "MerchantOrderItemID": "PO1002",
+        "CancelledQuantity": 0,
+        "AcknowledgedQuantity": 75,
+        "PerUnitPrice": 32.0,
+        "PerUnitDeclaredValue": 32.0
+      }
+    ],
+    "ExpectedShipDate": "2025-10-30",
+    "ExpectedDeliveryDate": "2025-11-03",
+    "CarrierCode": "UPS",
+    "CarrierName": "United Parcel Service",
+    "ShippingMethod": "Standard",
+    "ProcessedDateTime": "2025-10-27T15:12:04Z"
+  },
+  {
+    "MessageType": "OrderAcknowledgement",
+    "MerchantOrderID": "PO1003",
+    "AmazonOrderID": "AMZ-PO1003-20251027",
+    "StatusCode": "AC",
+    "ItemLevelAcknowledgements": [
+      {
+        "AmazonOrderItemCode": "SKU004-001",
+        "MerchantOrderItemID": "PO1003",
+        "CancelledQuantity": 0,
+        "AcknowledgedQuantity": 200,
+        "PerUnitPrice": 28.75,
+        "PerUnitDeclaredValue": 28.75
+      }
+    ],
+    "ExpectedShipDate": "2025-10-30",
+    "ExpectedDeliveryDate": "2025-11-03",
+    "CarrierCode": "UPS",
+    "CarrierName": "United Parcel Service",
+    "ShippingMethod": "Standard",
+    "ProcessedDateTime": "2025-10-27T15:12:04Z"
+  },
+  {
+    "MessageType": "OrderAcknowledgement",
+    "MerchantOrderID": "PO1004",
+    "AmazonOrderID": "AMZ-PO1004-20251027",
+    "StatusCode": "RJ",
+    "ItemLevelAcknowledgements": [
+      {
+        "AmazonOrderItemCode": "SKU999-001",
+        "MerchantOrderItemID": "PO1004",
+        "CancelledQuantity": 50,
+        "AcknowledgedQuantity": 0,
+        "PerUnitPrice": 15.0,
+        "PerUnitDeclaredValue": 15.0
+      }
+    ],
+    "ExpectedShipDate": null,
+    "ExpectedDeliveryDate": null,
+    "CarrierCode": "UPS",
+    "CarrierName": "United Parcel Service",
+    "ShippingMethod": "Standard",
+    "ProcessedDateTime": "2025-10-27T15:12:04Z"
+  }
+]

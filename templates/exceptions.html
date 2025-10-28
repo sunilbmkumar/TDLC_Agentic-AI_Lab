@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Exception Emails - PO to SO Agent Demo{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>⚠️ Exception Emails</h2>
+    
+    {% if emails %}
+    {% for email in emails %}
+    <div style="border: 1px solid #ddd; border-radius: 4px; margin-bottom: 1rem; padding: 1rem;">
+        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="color: #dc3545; margin: 0;">📧 {{ email.subject or 'Exception Notification' }}</h3>
+            <span style="font-size: 0.9rem; color: #666;">PO: {{ email.po_number }}</span>
+        </div>
+        
+        <div style="margin-bottom: 0.5rem;">
+            <strong>To:</strong> {{ email.to }}
+        </div>
+        
+        {% if email.cc %}
+        <div style="margin-bottom: 0.5rem;">
+            <strong>CC:</strong> {{ email.cc }}
+        </div>
+        {% endif %}
+        
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+            <pre style="white-space: pre-wrap; margin: 0; font-family: inherit;">{{ email.message }}</pre>
+        </div>
+        
+        {% if email.delivery_status %}
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <strong>Delivery Status:</strong> 
+            {% if email.delivery_status == 'delivered' %}
+                <span style="color: #28a745;">✅ Delivered</span>
+            {% elif email.delivery_status == 'failed' %}
+                <span style="color: #dc3545;">❌ Failed</span>
+            {% else %}
+                <span style="color: #ffc107;">⏳ {{ email.delivery_status }}</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    
+    <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+        <h3>Summary:</h3>
+        <p>
+            <strong>Total Exception Emails:</strong> {{ emails|length }}
+        </p>
+        
+        {% if emails %}
+        {% set delivered = emails|selectattr("delivery_status", "equalto", "delivered")|list|length %}
+        {% set failed = emails|selectattr("delivery_status", "equalto", "failed")|list|length %}
+        {% set pending = emails|length - delivered - failed %}
+        
+        <p>
+            <strong>Delivery Status:</strong>
+            ✅ Delivered: {{ delivered }} |
+            ❌ Failed: {{ failed }} |
+            ⏳ Pending: {{ pending }}
+        </p>
+        {% endif %}
+    </div>
+    
+    {% else %}
+    <div class="empty-state">
+        <h3>No Exception Emails</h3>
+        <p>Exception emails will appear here when validation finds issues with orders.</p>
+        <p style="margin-top: 1rem; color: #999;">
+            Execute: <code>python main.py</code> to run the complete workflow
+        </p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

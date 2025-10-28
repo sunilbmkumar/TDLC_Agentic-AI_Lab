@@ -1,0 +1,5 @@
+PO_Number,Customer_Name,SKU,Quantity_Ordered,Unit_Price,Total_Amount,Acknowledgment_Status,Acknowledgment_Code,Acknowledgment_Date,Acknowledgment_Time,Estimated_Ship_Date,Estimated_Delivery_Date,Vendor_ID,Vendor_Name,Notes,Contact_Email,Reference_Number
+PO1001,ACME Corp,SKU001,100,45.5,4550.0,ACCEPTED,AC,2025-10-27,15:12:04,2025-10-30,2025-11-03,VENDOR001,Demo Vendor Corp,Order accepted and will be processed,orders@demovendor.com,ACK-PO1001-20251027
+PO1002,Zenith Ltd,SKU002,75,32.0,2400.0,ACCEPTED,AC,2025-10-27,15:12:04,2025-10-30,2025-11-03,VENDOR001,Demo Vendor Corp,Order accepted and will be processed,orders@demovendor.com,ACK-PO1002-20251027
+PO1003,ACME Corp,SKU004,200,28.75,5750.0,ACCEPTED,AC,2025-10-27,15:12:04,2025-10-30,2025-11-03,VENDOR001,Demo Vendor Corp,Order accepted and will be processed,orders@demovendor.com,ACK-PO1003-20251027
+PO1004,Innova Inc,SKU999,50,15.0,750.0,REJECTED,RJ,2025-10-27,15:12:04,,,VENDOR001,Demo Vendor Corp,Order rejected: SKU SKU999 not found in master data,orders@demovendor.com,ACK-PO1004-20251027

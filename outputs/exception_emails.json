@@ -1,0 +1,13 @@
+[
+  {
+    "to": "Innova Inc",
+    "customer_email": "procurement@innovainc.com",
+    "customer_name": "Innova Inc",
+    "subject": "Invalid SKU Found in PO1004",
+    "message": "The product code SKU999 is invalid. Please review and resend your order.",
+    "po_number": "PO1004",
+    "exception_type": "SKU_NOT_FOUND",
+    "timestamp": "2025-10-28T06:27:30.022655",
+    "delivery_status": "delivered"
+  }
+]

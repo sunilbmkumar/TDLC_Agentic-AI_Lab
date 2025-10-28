@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Sales Orders - PO to SO Agent Demo{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>💰 Sales Orders</h2>
+    
+    {% if orders %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>SO Number</th>
+                <th>Customer</th>
+                <th>Material</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td><strong>{{ order.SO_Number }}</strong></td>
+                <td>{{ order.Customer }}</td>
+                <td>{{ order.Material }}</td>
+                <td>{{ order.Quantity }}</td>
+                <td>${{ order.Price }}</td>
+                <td><strong>${{ order.Total }}</strong></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+        <h3>Summary:</h3>
+        {% set total_values = [] %}
+        {% for order in orders %}
+            {% if order.Total is number %}
+                {% set _ = total_values.append(order.Total) %}
+            {% else %}
+                {% set _ = total_values.append(order.Total|float) %}
+            {% endif %}
+        {% endfor %}
+        {% set total_value = total_values|sum %}
+        <p>
+            <strong>Total Sales Orders:</strong> {{ orders|length }} |
+            <strong>Total Value:</strong> ${{ "%.2f"|format(total_value) }}
+        </p>
+        
+        <h4 style="margin-top: 1rem;">By Customer:</h4>
+        {% set customers = orders|groupby('Customer') %}
+        {% for customer, customer_orders in customers %}
+        {% set customer_values = [] %}
+        {% for order in customer_orders %}
+            {% if order.Total is number %}
+                {% set _ = customer_values.append(order.Total) %}
+            {% else %}
+                {% set _ = customer_values.append(order.Total|float) %}
+            {% endif %}
+        {% endfor %}
+        {% set customer_total = customer_values|sum %}
+        <div style="margin: 0.5rem 0;">
+            <strong>{{ customer }}:</strong> {{ customer_orders|length }} orders, ${{ "%.2f"|format(customer_total) }}
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% else %}
+    <div class="empty-state">
+        <h3>No Sales Orders</h3>
+        <p>Sales orders will appear here after successful validation and processing.</p>
+        <p style="margin-top: 1rem; color: #999;">
+            Execute: <code>python main.py</code> to run the complete workflow
+        </p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

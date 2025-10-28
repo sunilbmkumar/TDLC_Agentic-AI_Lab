@@ -1,0 +1,24 @@
+{
+  "pipeline_execution": {
+    "pipeline_start_time": null,
+    "pipeline_end_time": null,
+    "execution_results": {},
+    "shared_data_keys": [
+      "customer_orders",
+      "po_reader_stats",
+      "validation_results",
+      "validation_summary",
+      "exception_emails",
+      "exception_summary",
+      "sales_orders",
+      "so_creator_summary",
+      "final_summary"
+    ]
+  },
+  "shared_data_summary": {
+    "customer_orders_count": 4,
+    "validation_results_count": 4,
+    "sales_orders_count": 3,
+    "exception_emails_count": 1
+  }
+}

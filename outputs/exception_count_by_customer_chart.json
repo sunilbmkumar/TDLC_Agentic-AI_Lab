@@ -1,0 +1,20 @@
+{
+  "chart_type": "bar",
+  "title": "Exception Count by Customer",
+  "x_axis": "Customer",
+  "y_axis": "Exception Count",
+  "data": [
+    {
+      "customer": "Innova Inc",
+      "exception_count": 1
+    },
+    {
+      "customer": "ACME Corp",
+      "exception_count": 0
+    },
+    {
+      "customer": "Zenith Ltd",
+      "exception_count": 0
+    }
+  ]
+}

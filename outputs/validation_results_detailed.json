@@ -1,0 +1,54 @@
+[
+  {
+    "PO_Number": "PO1001",
+    "SKU": "SKU001",
+    "Status": "Valid",
+    "Reasons": [
+      "Price deviation of 8.3% is within acceptable range for SKU SKU001"
+    ],
+    "Details": {
+      "order_price": 45.5,
+      "reference_price": 42.0,
+      "price_deviation": 8.333333333333332
+    }
+  },
+  {
+    "PO_Number": "PO1002",
+    "SKU": "SKU002",
+    "Status": "Valid",
+    "Reasons": [
+      "Price deviation of 8.6% is within acceptable range for SKU SKU002"
+    ],
+    "Details": {
+      "order_price": 32.0,
+      "reference_price": 35.0,
+      "price_deviation": 8.571428571428571
+    }
+  },
+  {
+    "PO_Number": "PO1003",
+    "SKU": "SKU004",
+    "Status": "Valid",
+    "Reasons": [
+      "Price deviation of 8.5% is within acceptable range for SKU SKU004"
+    ],
+    "Details": {
+      "order_price": 28.75,
+      "reference_price": 26.5,
+      "price_deviation": 8.49056603773585
+    }
+  },
+  {
+    "PO_Number": "PO1004",
+    "SKU": "SKU999",
+    "Status": "Exception",
+    "Reasons": [
+      "SKU SKU999 not found in master data"
+    ],
+    "Details": {
+      "order_price": 15.0,
+      "reference_price": null,
+      "price_deviation": null
+    }
+  }
+]

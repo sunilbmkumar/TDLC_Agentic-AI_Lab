@@ -1,0 +1,50 @@
+{
+  "title": "Purchase Order Processing Dashboard",
+  "metrics": {
+    "total_orders": {
+      "value": 4,
+      "label": "Total Orders",
+      "icon": "\ud83d\udccb"
+    },
+    "validated_orders": {
+      "value": 3,
+      "label": "Validated Orders",
+      "icon": "\u2705"
+    },
+    "exceptions": {
+      "value": 1,
+      "label": "Exceptions",
+      "icon": "\u26a0\ufe0f"
+    },
+    "total_sales_value": {
+      "value": "$12,700.00",
+      "label": "Total Sales Value",
+      "icon": "\ud83d\udcb0"
+    }
+  },
+  "charts": {
+    "validation_success_rate": {
+      "type": "gauge",
+      "value": 75.0,
+      "label": "Validation Success Rate (%)",
+      "color": "green"
+    },
+    "customer_contributions": {
+      "type": "pie",
+      "data": {
+        "ACME Corp": {
+          "total_value": 10300.0,
+          "percentage": 81.10236220472441,
+          "order_count": 2
+        },
+        "Zenith Ltd": {
+          "total_value": 2400.0,
+          "percentage": 18.89763779527559,
+          "order_count": 1
+        }
+      },
+      "label": "Customer Contribution by Value"
+    }
+  },
+  "generated_timestamp": "2025-10-28T06:27:30.430482"
+}

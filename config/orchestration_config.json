@@ -1,0 +1,50 @@
+{
+  "execution_mode": "coordinated",
+  "max_parallel_agents": 2,
+  "enable_error_recovery": true,
+  "enable_monitoring": true,
+  "dependencies": {
+    "po_reader": [],
+    "validation": ["po_reader"],
+    "exception_response": ["validation"],
+    "so_creator": ["validation"],
+    "summary_insights": ["exception_response", "so_creator"]
+  },
+  "parallel_groups": {
+    "post_validation": ["exception_response", "so_creator"]
+  },
+  "agent_priorities": {
+    "po_reader": 100,
+    "validation": 90,
+    "exception_response": 80,
+    "so_creator": 80,
+    "summary_insights": 70
+  },
+  "agents": {
+    "po_reader": {
+      "enabled": true,
+      "timeout": 30,
+      "retry_count": 2
+    },
+    "validation": {
+      "enabled": true,
+      "timeout": 60,
+      "retry_count": 2
+    },
+    "exception_response": {
+      "enabled": true,
+      "timeout": 45,
+      "retry_count": 1
+    },
+    "so_creator": {
+      "enabled": true,
+      "timeout": 30,
+      "retry_count": 2
+    },
+    "summary_insights": {
+      "enabled": true,
+      "timeout": 30,
+      "retry_count": 1
+    }
+  }
+}

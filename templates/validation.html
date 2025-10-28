@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Validation Results - PO to SO Agent Demo{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>✅ Validation Results</h2>
+    
+    {% if results %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PO Number</th>
+                <th>SKU</th>
+                <th>Status</th>
+                <th>Order Price</th>
+                <th>Reference Price</th>
+                <th>Price Deviation</th>
+                <th>Reasons</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td><strong>{{ result.PO_Number }}</strong></td>
+                <td>{{ result.SKU }}</td>
+                <td>
+                    {% if result.Status == 'Valid' %}
+                        <span class="status-valid">✅ Valid</span>
+                    {% else %}
+                        <span class="status-exception">⚠️ Exception</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if result.Details and result.Details.order_price %}
+                        ${{ "%.2f"|format(result.Details.order_price) }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if result.Details and result.Details.reference_price %}
+                        ${{ "%.2f"|format(result.Details.reference_price) }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if result.Details and result.Details.price_deviation %}
+                        {{ "%.1f"|format(result.Details.price_deviation) }}%
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if result.Reasons %}
+                        <ul style="margin: 0; padding-left: 1rem;">
+                            {% for reason in result.Reasons %}
+                            <li style="font-size: 0.9rem;">{{ reason }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+        <h3>Summary:</h3>
+        <p>
+            <strong>Total Orders:</strong> {{ results|length }} |
+            <strong>Valid:</strong> {{ results|selectattr("Status", "equalto", "Valid")|list|length }} |
+            <strong>Exceptions:</strong> {{ results|selectattr("Status", "equalto", "Exception")|list|length }}
+        </p>
+    </div>
+    
+    {% else %}
+    <div class="empty-state">
+        <h3>No Validation Results</h3>
+        <p>Run the validation agent to see results here.</p>
+        <p style="margin-top: 1rem; color: #999;">
+            Execute: <code>python main.py</code> to run the complete workflow
+        </p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

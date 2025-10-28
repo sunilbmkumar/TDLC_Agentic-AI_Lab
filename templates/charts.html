@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Charts - PO to SO Agent Demo{% endblock %}
+
+{% block content %}
+{% if charts %}
+
+{% if charts.sales_value %}
+<div class="chart-container">
+    <h2>📊 {{ charts.sales_value.title }}</h2>
+    <div style="margin-top: 1rem;">
+        <canvas id="salesChart" width="400" height="200"></canvas>
+    </div>
+    
+    <div style="margin-top: 1rem;">
+        <h4>Data:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Sales Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in charts.sales_value.data %}
+                <tr>
+                    <td>{{ item.customer }}</td>
+                    <td>${{ "%.2f"|format(item.sales_value) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+{% if charts.exception_count %}
+<div class="chart-container">
+    <h2>⚠️ {{ charts.exception_count.title }}</h2>
+    <div style="margin-top: 1rem;">
+        <canvas id="exceptionChart" width="400" height="200"></canvas>
+    </div>
+    
+    <div style="margin-top: 1rem;">
+        <h4>Data:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Exception Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in charts.exception_count.data %}
+                <tr>
+                    <td>{{ item.customer }}</td>
+                    <td>{{ item.exception_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Sales Value Chart
+    {% if charts.sales_value %}
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(salesCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ charts.sales_value.data|map(attribute='customer')|list|tojson }},
+            datasets: [{
+                label: 'Sales Value ($)',
+                data: {{ charts.sales_value.data|map(attribute='sales_value')|list|tojson }},
+                backgroundColor: 'rgba(102, 126, 234, 0.6)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value.toFixed(2);
+                        }
+                    }
+                }
+            }
+        }
+    });
+    {% endif %}
+    
+    // Exception Count Chart
+    {% if charts.exception_count %}
+    const exceptionCtx = document.getElementById('exceptionChart').getContext('2d');
+    const exceptionChart = new Chart(exceptionCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ charts.exception_count.data|map(attribute='customer')|list|tojson }},
+            datasets: [{
+                label: 'Exception Count',
+                data: {{ charts.exception_count.data|map(attribute='exception_count')|list|tojson }},
+                backgroundColor: 'rgba(220, 53, 69, 0.6)',
+                borderColor: 'rgba(220, 53, 69, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+    {% endif %}
+</script>
+
+{% else %}
+<div class="empty-state">
+    <h3>No Chart Data Available</h3>
+    <p>Charts will appear here after running the complete workflow.</p>
+    <p style="margin-top: 1rem; color: #999;">
+        Execute: <code>python main.py</code> to generate chart data
+    </p>
+</div>
+{% endif %}
+{% endblock %}
