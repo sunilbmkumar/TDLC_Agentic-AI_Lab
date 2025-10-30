@@ -2,10 +2,10 @@
   "coordination_status": {
     "completed_agents": [
       "so_creator",
-      "summary_insights",
-      "exception_response",
+      "validation",
       "po_reader",
-      "validation"
+      "summary_insights",
+      "exception_response"
     ],
     "failed_agents": [],
     "running_agents": [],
@@ -14,36 +14,36 @@
         "status": "completed",
         "progress_percentage": 100.0,
         "current_operation": "Completed successfully",
-        "start_time": "2025-10-28T06:27:29.988748",
-        "last_heartbeat": "2025-10-28T06:27:30.000975"
+        "start_time": "2025-10-29T10:26:45.319536",
+        "last_heartbeat": "2025-10-29T10:26:45.324006"
       },
       "validation": {
         "status": "completed",
         "progress_percentage": 100.0,
         "current_operation": "Completed successfully",
-        "start_time": "2025-10-28T06:27:30.001854",
-        "last_heartbeat": "2025-10-28T06:27:30.012369"
+        "start_time": "2025-10-29T10:26:45.325015",
+        "last_heartbeat": "2025-10-29T10:26:45.330760"
       },
       "exception_response": {
         "status": "completed",
         "progress_percentage": 100.0,
         "current_operation": "Completed successfully",
-        "start_time": "2025-10-28T06:27:30.012895",
-        "last_heartbeat": "2025-10-28T06:27:30.418103"
+        "start_time": "2025-10-29T10:26:45.331564",
+        "last_heartbeat": "2025-10-29T10:26:45.650606"
       },
       "so_creator": {
         "status": "completed",
         "progress_percentage": 100.0,
         "current_operation": "Completed successfully",
-        "start_time": "2025-10-28T06:27:30.014474",
-        "last_heartbeat": "2025-10-28T06:27:30.030684"
+        "start_time": "2025-10-29T10:26:45.331934",
+        "last_heartbeat": "2025-10-29T10:26:45.344918"
       },
       "summary_insights": {
         "status": "completed",
         "progress_percentage": 100.0,
         "current_operation": "Completed successfully",
-        "start_time": "2025-10-28T06:27:30.419017",
-        "last_heartbeat": "2025-10-28T06:27:30.430766"
+        "start_time": "2025-10-29T10:26:45.651930",
+        "last_heartbeat": "2025-10-29T10:26:45.657768"
       }
     },
     "dependencies": {
@@ -87,14 +87,14 @@
     "po_reader": {
       "agent_name": "po_reader",
       "status": "completed",
-      "execution_time": 0.010776,
+      "execution_time": 0.004359,
       "error_message": null,
       "output_files": null
     },
     "validation": {
       "agent_name": "validation",
       "status": "completed",
-      "execution_time": 0.010365,
+      "execution_time": 0.005639,
       "error_message": null,
       "output_files": [
         "outputs/validation_results_simple.json",
@@ -104,7 +104,7 @@
     "so_creator": {
       "agent_name": "so_creator",
       "status": "completed",
-      "execution_time": 0.014476,
+      "execution_time": 0.012416,
       "error_message": null,
       "output_files": [
         "outputs/sales_order_output.csv",
@@ -115,7 +115,7 @@
     "exception_response": {
       "agent_name": "exception_response",
       "status": "completed",
-      "execution_time": 0.403287,
+      "execution_time": 0.318898,
       "error_message": null,
       "output_files": [
         "outputs/exception_emails.json"
@@ -124,7 +124,7 @@
     "summary_insights": {
       "agent_name": "summary_insights",
       "status": "completed",
-      "execution_time": 0.011554,
+      "execution_time": 0.005704,
       "error_message": null,
       "output_files": [
         "outputs/executive_summary_report.txt",
@@ -132,5 +132,5 @@
       ]
     }
   },
-  "timestamp": "2025-10-28T06:27:30.433418"
+  "timestamp": "2025-10-29T10:26:45.662160"
 }

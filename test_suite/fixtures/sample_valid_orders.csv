@@ -1,0 +1,6 @@
+customer_name,sku,quantity,unit_price
+Acme Corp,SKU001,10,25.50
+Beta Industries,SKU002,5,15.75
+Gamma LLC,SKU003,20,8.25
+Delta Systems,SKU001,15,25.50
+Echo Enterprises,SKU004,8,42.00

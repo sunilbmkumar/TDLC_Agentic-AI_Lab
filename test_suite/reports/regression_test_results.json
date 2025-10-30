@@ -1,0 +1,180 @@
+{
+  "execution_time": "2025-10-30T05:33:43.638725",
+  "system_status": "excellent",
+  "total_components": 5,
+  "passed_components": 5,
+  "failed_components": 0,
+  "component_results": [
+    {
+      "name": "Agent System",
+      "status": "passed",
+      "details": [
+        "\u2705 PO Reader Agent: Import and instantiation successful",
+        "\u2705 Validation Agent: Import and instantiation successful",
+        "\u2705 Exception Response Agent: Import and instantiation successful",
+        "\u2705 Sales Order Creator Agent: Import and instantiation successful",
+        "\u2705 Summary Insights Agent: Import and instantiation successful",
+        "\u2705 PO Acknowledgment Agent: Import and instantiation successful"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_agents": 6,
+        "passed_agents": 6,
+        "failed_agents": 0,
+        "success_rate": 100.0
+      }
+    },
+    {
+      "name": "Orchestration System",
+      "status": "passed",
+      "details": [
+        "\u2705 Orchestration Manager: Import successful",
+        "\u2705 Agent Pipeline: Import successful",
+        "\u2705 Agent Coordinator: Import successful"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_components": 3,
+        "passed_components": 3,
+        "failed_components": 0,
+        "success_rate": 100.0
+      }
+    },
+    {
+      "name": "Data Pipeline",
+      "status": "passed",
+      "details": [
+        "\u2705 Customer Orders: Present (182 bytes)",
+        "\u2705 Master SKU Data: Present (138 bytes)"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_files": 2,
+        "passed_files": 2,
+        "failed_files": 0,
+        "success_rate": 100.0
+      }
+    },
+    {
+      "name": "Output Generation",
+      "status": "passed",
+      "details": [
+        "\u2705 Validation Results: Generated (1171 bytes)",
+        "\u2705 Sales Orders: Generated (179 bytes)",
+        "\u2705 Exception Emails: Generated (406 bytes)",
+        "\u2705 PO Acknowledgments: Generated (1054 bytes)",
+        "\u2705 Executive Summary: Generated (946 bytes)"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_outputs": 5,
+        "generated_outputs": 5,
+        "missing_outputs": 0,
+        "generation_rate": 100.0
+      }
+    },
+    {
+      "name": "Configuration",
+      "status": "passed",
+      "details": [
+        "\u2705 Orchestration Config: Valid JSON (8 keys)",
+        "\u2705 Agent Config: Valid JSON (2 keys)"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_configs": 2,
+        "valid_configs": 2,
+        "invalid_configs": 0,
+        "config_validity_rate": 100.0
+      }
+    }
+  ],
+  "detailed_results": {
+    "agents": {
+      "name": "Agent System",
+      "status": "passed",
+      "details": [
+        "\u2705 PO Reader Agent: Import and instantiation successful",
+        "\u2705 Validation Agent: Import and instantiation successful",
+        "\u2705 Exception Response Agent: Import and instantiation successful",
+        "\u2705 Sales Order Creator Agent: Import and instantiation successful",
+        "\u2705 Summary Insights Agent: Import and instantiation successful",
+        "\u2705 PO Acknowledgment Agent: Import and instantiation successful"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_agents": 6,
+        "passed_agents": 6,
+        "failed_agents": 0,
+        "success_rate": 100.0
+      }
+    },
+    "orchestration": {
+      "name": "Orchestration System",
+      "status": "passed",
+      "details": [
+        "\u2705 Orchestration Manager: Import successful",
+        "\u2705 Agent Pipeline: Import successful",
+        "\u2705 Agent Coordinator: Import successful"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_components": 3,
+        "passed_components": 3,
+        "failed_components": 0,
+        "success_rate": 100.0
+      }
+    },
+    "data_pipeline": {
+      "name": "Data Pipeline",
+      "status": "passed",
+      "details": [
+        "\u2705 Customer Orders: Present (182 bytes)",
+        "\u2705 Master SKU Data: Present (138 bytes)"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_files": 2,
+        "passed_files": 2,
+        "failed_files": 0,
+        "success_rate": 100.0
+      }
+    },
+    "outputs": {
+      "name": "Output Generation",
+      "status": "passed",
+      "details": [
+        "\u2705 Validation Results: Generated (1171 bytes)",
+        "\u2705 Sales Orders: Generated (179 bytes)",
+        "\u2705 Exception Emails: Generated (406 bytes)",
+        "\u2705 PO Acknowledgments: Generated (1054 bytes)",
+        "\u2705 Executive Summary: Generated (946 bytes)"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_outputs": 5,
+        "generated_outputs": 5,
+        "missing_outputs": 0,
+        "generation_rate": 100.0
+      }
+    },
+    "configuration": {
+      "name": "Configuration",
+      "status": "passed",
+      "details": [
+        "\u2705 Orchestration Config: Valid JSON (8 keys)",
+        "\u2705 Agent Config: Valid JSON (2 keys)"
+      ],
+      "issues": [],
+      "metrics": {
+        "total_configs": 2,
+        "valid_configs": 2,
+        "invalid_configs": 0,
+        "config_validity_rate": 100.0
+      }
+    }
+  },
+  "recommendations": [
+    "System is in excellent condition with no major issues detected"
+  ]
+}

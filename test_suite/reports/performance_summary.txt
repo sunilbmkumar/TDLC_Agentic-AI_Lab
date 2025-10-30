@@ -1,0 +1,39 @@
+
+PERFORMANCE TEST SUITE SUMMARY
+==================================================
+
+Execution Details:
+  Start Time: 2025-10-29T19:19:23.907488
+  End Time: 2025-10-29T19:23:10.105872
+  Total Duration: 226.20s
+  Platform: linux
+
+Overall Results:
+  Total Tests: 15
+  Passed: 10
+  Failed: 4
+  Errors: 1
+  Success Rate: 66.7%
+
+Test Suite Breakdown:
+
+Dataset Scaling Tests:
+  Tests: 5
+  Success Rate: 100.0%
+  Execution Time: 19.83s
+  Failures: 0
+  Errors: 0
+
+Execution Benchmark Tests:
+  Tests: 5
+  Success Rate: 40.0%
+  Execution Time: 200.91s
+  Failures: 2
+  Errors: 1
+
+Resource Monitoring Tests:
+  Tests: 5
+  Success Rate: 60.0%
+  Execution Time: 5.46s
+  Failures: 2
+  Errors: 0

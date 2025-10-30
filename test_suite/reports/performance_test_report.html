@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Performance Test Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background-color: #f0f0f0; padding: 20px; border-radius: 5px; }
+        .summary { margin: 20px 0; }
+        .test-suite { margin: 20px 0; border: 1px solid #ddd; border-radius: 5px; }
+        .test-suite-header { background-color: #e9e9e9; padding: 10px; font-weight: bold; }
+        .test-suite-content { padding: 15px; }
+        .success { color: green; }
+        .failure { color: red; }
+        .error { color: orange; }
+        .metric { margin: 5px 0; }
+        table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Performance Test Report</h1>
+        <p>Generated: 2025-10-29T19:23:10.105872</p>
+        <p>Platform: linux</p>
+        <p>Python Version: 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]</p>
+    </div>
+    
+    <div class="summary">
+        <h2>Overall Summary</h2>
+        <table>
+            <tr><th>Metric</th><th>Value</th></tr>
+            <tr><td>Total Tests</td><td>15</td></tr>
+            <tr><td>Passed</td><td class="success">10</td></tr>
+            <tr><td>Failed</td><td class="failure">4</td></tr>
+            <tr><td>Errors</td><td class="error">1</td></tr>
+            <tr><td>Success Rate</td><td>66.7%</td></tr>
+            <tr><td>Total Execution Time</td><td>226.20s</td></tr>
+        </table>
+    </div>
+
+    <div class="test-suite">
+        <div class="test-suite-header">Dataset Scaling Tests</div>
+        <div class="test-suite-content">
+            <div class="metric">Tests Run: 5</div>
+            <div class="metric">Success Rate: 100.0%</div>
+            <div class="metric">Execution Time: 19.83s</div>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="test-suite">
+        <div class="test-suite-header">Execution Benchmark Tests</div>
+        <div class="test-suite-content">
+            <div class="metric">Tests Run: 5</div>
+            <div class="metric">Success Rate: 40.0%</div>
+            <div class="metric">Execution Time: 200.91s</div>
+            
+            <h4>Failures (2)</h4>
+            <h4>Errors (1)</h4>
+        </div>
+    </div>
+
+    <div class="test-suite">
+        <div class="test-suite-header">Resource Monitoring Tests</div>
+        <div class="test-suite-content">
+            <div class="metric">Tests Run: 5</div>
+            <div class="metric">Success Rate: 60.0%</div>
+            <div class="metric">Execution Time: 5.46s</div>
+            
+            <h4>Failures (2)</h4>
+            
+        </div>
+    </div>
+
+</body>
+</html>

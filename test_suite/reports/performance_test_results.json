@@ -1,0 +1,69 @@
+{
+  "test_suites": {
+    "Dataset Scaling Tests": {
+      "tests_run": 5,
+      "failures": 0,
+      "errors": 0,
+      "success_rate": 100.0,
+      "execution_time": 19.828105449676514,
+      "failure_details": [],
+      "error_details": []
+    },
+    "Execution Benchmark Tests": {
+      "tests_run": 5,
+      "failures": 2,
+      "errors": 1,
+      "success_rate": 40.0,
+      "execution_time": 200.90714406967163,
+      "failure_details": [
+        {
+          "test": "test_performance_regression_detection (test_suite.performance_tests.test_execution_benchmarks.ExecutionBenchmarkTests.test_performance_regression_detection) (dataset_size=100, scenario='major_regression')",
+          "error": "Traceback (most recent call last):\n  File \"/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO/test_suite/performance_tests/test_execution_benchmarks.py\", line 294, in test_performance_regression_detection\n    self.assertEqual(regression_level, 'critical',\nAssertionError: 'warning' != 'critical'\n- warning\n+ critical\n : Major regression not classified as critical for 100 orders\n"
+        },
+        {
+          "test": "test_performance_regression_detection (test_suite.performance_tests.test_execution_benchmarks.ExecutionBenchmarkTests.test_performance_regression_detection) (dataset_size=250, scenario='major_regression')",
+          "error": "Traceback (most recent call last):\n  File \"/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO/test_suite/performance_tests/test_execution_benchmarks.py\", line 294, in test_performance_regression_detection\n    self.assertEqual(regression_level, 'critical',\nAssertionError: 'warning' != 'critical'\n- warning\n+ critical\n : Major regression not classified as critical for 250 orders\n"
+        }
+      ],
+      "error_details": [
+        {
+          "test": "test_benchmark_persistence_and_comparison (test_suite.performance_tests.test_execution_benchmarks.ExecutionBenchmarkTests.test_benchmark_persistence_and_comparison)",
+          "error": "Traceback (most recent call last):\n  File \"/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO/test_suite/performance_tests/test_execution_benchmarks.py\", line 317, in test_benchmark_persistence_and_comparison\n    self.assert_file_exists(benchmark_file)\n    ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ExecutionBenchmarkTests' object has no attribute 'assert_file_exists'\n"
+        }
+      ]
+    },
+    "Resource Monitoring Tests": {
+      "tests_run": 5,
+      "failures": 2,
+      "errors": 0,
+      "success_rate": 60.0,
+      "execution_time": 5.462050914764404,
+      "failure_details": [
+        {
+          "test": "test_cpu_utilization_efficiency (test_suite.performance_tests.test_resource_monitoring.ResourceMonitoringTests.test_cpu_utilization_efficiency) (scenario='parallel_execution')",
+          "error": "Traceback (most recent call last):\n  File \"/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO/test_suite/performance_tests/test_resource_monitoring.py\", line 204, in test_cpu_utilization_efficiency\n    self.assertGreater(avg_cpu, 10,\nAssertionError: 0.9 not greater than 10 : Parallel execution should show higher CPU utilization, got 0.9%\n"
+        },
+        {
+          "test": "test_file_system_io_performance (test_suite.performance_tests.test_resource_monitoring.ResourceMonitoringTests.test_file_system_io_performance) (scenario='large_io')",
+          "error": "Traceback (most recent call last):\n  File \"/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO/test_suite/performance_tests/test_resource_monitoring.py\", line 284, in test_file_system_io_performance\n    self.assertGreater(io_analysis['read_throughput'], 1.0,\nAssertionError: 0.0 not greater than 1.0 : Read throughput too low for large_io: 0.00 MB/s\n"
+        }
+      ],
+      "error_details": []
+    }
+  },
+  "summary": {
+    "total_tests": 15,
+    "total_passed": 10,
+    "total_failed": 4,
+    "total_errors": 1,
+    "overall_success_rate": 66.66666666666666,
+    "total_execution_time": 226.19838190078735
+  },
+  "metadata": {
+    "start_time": "2025-10-29T19:19:23.907488",
+    "python_version": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "platform": "linux",
+    "end_time": "2025-10-29T19:23:10.105872",
+    "total_execution_time": 226.19838190078735
+  }
+}

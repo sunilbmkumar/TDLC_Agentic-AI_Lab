@@ -17,6 +17,7 @@ Flask>=2.0.0           # Web framework for the dashboard UI
 # pytest>=7.0.0          # For running tests with pytest instead of unittest
 # black>=22.0.0          # For code formatting
 # flake8>=5.0.0          # For code linting
+psutil>=5.8.0           # For performance monitoring and resource usage tracking
 
 # Note: If you get "ModuleNotFoundError" for any package, 
 # uncomment the relevant line above and run: pip install -r requirements.txt

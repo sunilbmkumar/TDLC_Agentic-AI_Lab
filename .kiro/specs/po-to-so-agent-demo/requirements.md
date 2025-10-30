@@ -21,36 +21,20 @@ The Customer Purchase Order to Sales Order system automates the complete workflo
 
 ### Requirement 1: Customer Order Ingestion and PO Validation
 
-**User Story:** As an order processing specialist, I want the system to automatically download and validate customer orders from the portal, so that I can ensure data quality before processing.
+**User Story:** As an order processing specialist, I want the system to handle complete customer order processing workflow, so that I can efficiently manage orders from ingestion through acknowledgment.
 
 #### Acceptance Criteria
 
-1. THE PO_to_SO_System SHALL download all customer orders from the Customer_Portal automatically
-2. WHEN orders are downloaded, THE PO_to_SO_System SHALL validate each Purchase_Order against Supporting_Data
-3. THE PO_to_SO_System SHALL store validated order data in the designated Share_Folder
-4. THE PO_to_SO_System SHALL display validation results in the UI_Dashboard for user reference
-5. WHEN validation is complete, THE PO_to_SO_System SHALL generate PO_Acknowledgment datasets for confirmed orders
+1. THE PO_to_SO_System SHALL download all 4 customer orders from the Customer_Portal automatically
+2. WHEN orders are downloaded, THE PO_to_SO_System SHALL validate each Purchase_Order against Supporting_Data and store in Share_Folder
+3. THE PO_to_SO_System SHALL consume PO validated data and display results in UI_Dashboard for user reference
+4. THE PO_to_SO_System SHALL perform account-specific additional tasks including drop reason exception handling and email notifications
+5. WHEN processing is complete, THE PO_to_SO_System SHALL create PO_Acknowledgment datasets
 
-### Requirement 2: Account-Specific Exception Handling
+### Requirement 2: Creating Sales Order in ERP
 
-**User Story:** As a customer account manager, I want the system to handle account-specific business rules and exceptions, so that I can maintain customer relationships and resolve issues promptly.
-
-#### Acceptance Criteria
-
-1. THE PO_to_SO_System SHALL apply account-specific business rules during order processing
-2. WHEN drop reasons or exceptions occur, THE Exception_Handler SHALL process them according to customer-specific protocols
-3. THE PO_to_SO_System SHALL send automated email notifications for exception conditions
-4. WHERE account-specific workflows exist, THE PO_to_SO_System SHALL execute additional processing tasks
-5. THE PO_to_SO_System SHALL log all exception handling activities with customer account references
-
-### Requirement 3: Sales Order Creation in ERP
-
-**User Story:** As an ERP administrator, I want the system to create SAP-compatible sales orders from validated purchase orders, so that I can maintain seamless integration with our enterprise systems.
+**User Story:** As an ERP administrator, I want the system to create SAP-compatible sales orders from processed purchase orders, so that I can maintain seamless integration with our enterprise systems.
 
 #### Acceptance Criteria
 
-1. THE PO_to_SO_System SHALL generate SAP-compatible datasets from validated Purchase_Orders
-2. THE PO_to_SO_System SHALL create Sales_Orders in the ERP_System using the generated datasets
-3. WHEN Sales_Orders are created, THE PO_to_SO_System SHALL assign unique ERP identifiers
-4. THE PO_to_SO_System SHALL maintain data mapping between Purchase_Orders and Sales_Orders
-5. THE PO_to_SO_System SHALL confirm successful Sales_Order creation in the ERP_System
+1. THE PO_to_SO_System SHALL create SAP-compatible datasets from validated Purchase_Orders

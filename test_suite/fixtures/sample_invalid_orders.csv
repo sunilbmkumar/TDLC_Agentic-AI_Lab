@@ -1,0 +1,6 @@
+customer_name,sku,quantity,unit_price
+Invalid Corp,INVALID_SKU,10,25.50
+,SKU002,5,15.75
+Negative Qty,SKU003,-5,8.25
+Zero Qty,SKU001,0,25.50
+High Price,SKU004,8,999.99

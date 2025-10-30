@@ -1,0 +1,6 @@
+sku,description,standard_price,category
+SKU001,Widget A,25.00,Electronics
+SKU002,Widget B,15.00,Electronics
+SKU003,Widget C,8.00,Hardware
+SKU004,Widget D,40.00,Software
+SKU005,Widget E,12.50,Accessories
