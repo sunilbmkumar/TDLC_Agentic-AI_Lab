@@ -50,5 +50,18 @@
       "reference_price": null,
       "price_deviation": null
     }
+  },
+  {
+    "PO_Number": "PO1004",
+    "SKU": "SKU003",
+    "Status": "Exception",
+    "Reasons": [
+      "SKU SKU003 not found in master data"
+    ],
+    "Details": {
+      "order_price": 18.0,
+      "reference_price": null,
+      "price_deviation": null
+    }
   }
 ]

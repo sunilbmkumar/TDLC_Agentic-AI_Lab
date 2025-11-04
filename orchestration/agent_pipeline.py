@@ -61,7 +61,7 @@ class AgentExecutionPipeline:
     def _get_default_config(self) -> Dict[str, Any]:
         """Default configuration for agent pipeline"""
         return {
-            "execution_order": ["po_reader", "validation", "exception_response", "so_creator", "summary_insights"],
+            "execution_order": ["po_reader", "validation", "exception_response", "so_creator", "po_acknowledgment", "summary_insights"],
             "agents": {
                 "po_reader": {
                     "enabled": True,
@@ -79,6 +79,11 @@ class AgentExecutionPipeline:
                     "retry_count": 1
                 },
                 "so_creator": {
+                    "enabled": True,
+                    "timeout": 30,
+                    "retry_count": 2
+                },
+                "po_acknowledgment": {
                     "enabled": True,
                     "timeout": 30,
                     "retry_count": 2
@@ -154,6 +159,8 @@ class AgentExecutionPipeline:
                 result = self._execute_exception_response()
             elif agent_name == "so_creator":
                 result = self._execute_so_creator()
+            elif agent_name == "po_acknowledgment":
+                result = self._execute_po_acknowledgment()
             elif agent_name == "summary_insights":
                 result = self._execute_summary_insights()
             else:
@@ -356,6 +363,37 @@ class AgentExecutionPipeline:
                 'total_sales_value': result.get('total_sales_value', 0)
             },
             output_files=[result.get('csv_file')] + result.get('chart_files', [])
+        )
+    
+    def _execute_po_acknowledgment(self) -> AgentResult:
+        """Execute PO Acknowledgment Agent"""
+        from agents.po_acknowledgment.agent import POAcknowledgmentAgent
+        
+        po_ack_agent = POAcknowledgmentAgent()
+        
+        # Create PO acknowledgments
+        result = po_ack_agent.create_po_acknowledgments()
+        
+        if not result.get('success', False):
+            return AgentResult(
+                agent_name="po_acknowledgment",
+                status=AgentStatus.FAILED,
+                error_message=result.get('message', 'PO acknowledgment creation failed')
+            )
+        
+        # Store acknowledgment data for other agents
+        self.shared_data['po_acknowledgments'] = result.get('acknowledgments', [])
+        self.shared_data['po_acknowledgment_summary'] = result.get('summary', {})
+        
+        return AgentResult(
+            agent_name="po_acknowledgment",
+            status=AgentStatus.COMPLETED,
+            data={
+                'acknowledgments_created': len(result.get('acknowledgments', [])),
+                'acceptance_rate': result.get('summary', {}).get('acceptance_rate', 0),
+                'total_order_value': result.get('summary', {}).get('total_order_value', 0)
+            },
+            output_files=list(result.get('files_created', {}).values())
         )
     
     def _execute_summary_insights(self) -> AgentResult:

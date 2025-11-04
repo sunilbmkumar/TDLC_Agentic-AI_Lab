@@ -8,16 +8,18 @@
     "validation": ["po_reader"],
     "exception_response": ["validation"],
     "so_creator": ["validation"],
-    "summary_insights": ["exception_response", "so_creator"]
+    "po_acknowledgment": ["validation"],
+    "summary_insights": ["exception_response", "so_creator", "po_acknowledgment"]
   },
   "parallel_groups": {
-    "post_validation": ["exception_response", "so_creator"]
+    "post_validation": ["exception_response", "so_creator", "po_acknowledgment"]
   },
   "agent_priorities": {
     "po_reader": 100,
     "validation": 90,
     "exception_response": 80,
     "so_creator": 80,
+    "po_acknowledgment": 80,
     "summary_insights": 70
   },
   "agents": {
@@ -37,6 +39,11 @@
       "retry_count": 1
     },
     "so_creator": {
+      "enabled": true,
+      "timeout": 30,
+      "retry_count": 2
+    },
+    "po_acknowledgment": {
       "enabled": true,
       "timeout": 30,
       "retry_count": 2

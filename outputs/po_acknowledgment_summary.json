@@ -1,12 +1,12 @@
 {
-  "total_orders": 4,
+  "total_orders": 5,
   "accepted_orders": 3,
-  "rejected_orders": 1,
-  "acceptance_rate": 75.0,
-  "total_order_value": 13450.0,
+  "rejected_orders": 2,
+  "acceptance_rate": 60.0,
+  "total_order_value": 14170.0,
   "accepted_order_value": 12700.0,
-  "rejected_order_value": 750.0,
-  "generated_date": "2025-10-27 15:12:04",
+  "rejected_order_value": 1470.0,
+  "generated_date": "2025-11-04 14:37:36",
   "acknowledgment_files": [
     "po_acknowledgments.csv",
     "amazon_po_acknowledgments.json"
