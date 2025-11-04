@@ -1,4 +1,28 @@
 {
   "mcpServers": {
+    "git-wsl": {
+      "command": "wsl",
+      "args": [
+        "/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO/.venv/bin/uvx",
+        "mcp-server-git@latest"
+      ],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "INFO",
+        "GIT_WORKING_DIR": "/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "clone_repo",
+        "pull_branch",
+        "list_files",
+        "read_file"
+      ]
+    }
+  },
+  "gitWorkflow": {
+    "enabled": true,
+    "defaultBranch": "main",
+    "autoFetch": false,
+    "workingDirectory": "/home/sunilbm/Agentic AI/Kiro/Smart Order Assistant Automated PO to SO"
   }
 }
