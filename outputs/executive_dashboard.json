@@ -2,7 +2,7 @@
   "title": "Purchase Order Processing Dashboard",
   "metrics": {
     "total_orders": {
-      "value": 4,
+      "value": 5,
       "label": "Total Orders",
       "icon": "\ud83d\udccb"
     },
@@ -12,7 +12,7 @@
       "icon": "\u2705"
     },
     "exceptions": {
-      "value": 1,
+      "value": 2,
       "label": "Exceptions",
       "icon": "\u26a0\ufe0f"
     },
@@ -25,9 +25,9 @@
   "charts": {
     "validation_success_rate": {
       "type": "gauge",
-      "value": 75.0,
+      "value": 60.0,
       "label": "Validation Success Rate (%)",
-      "color": "green"
+      "color": "orange"
     },
     "customer_contributions": {
       "type": "pie",
@@ -46,5 +46,5 @@
       "label": "Customer Contribution by Value"
     }
   },
-  "generated_timestamp": "2025-10-29T10:26:45.657011"
+  "generated_timestamp": "2025-11-04T14:37:37.344929"
 }

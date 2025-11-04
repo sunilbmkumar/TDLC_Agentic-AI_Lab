@@ -1,13 +1,13 @@
 
 EXECUTIVE SUMMARY REPORT
 ========================
-Generated: 2025-10-29 10:26:45
+Generated: 2025-11-04 14:37:37
 
 PROCESSING OVERVIEW
 -------------------
-• Total Orders Processed: 4
-• Successfully Validated: 3 (75.0%)
-• Exceptions Handled: 1 (25.0%)
+• Total Orders Processed: 5
+• Successfully Validated: 3 (60.0%)
+• Exceptions Handled: 2 (40.0%)
 • Sales Orders Created: 3
 • Total Sales Value: $12,700.00
 
@@ -16,7 +16,6 @@ KEY INSIGHTS
 • ACME Corp contributed 81% of total value
 • ACME Corp placed 2 orders
 • Innova Inc PO failed due to missing SKU
-• High validation success rate of 75%
 
 CUSTOMER PERFORMANCE
 --------------------
@@ -25,12 +24,12 @@ CUSTOMER PERFORMANCE
 
 EXCEPTION SUMMARY
 -----------------
-• Innova Inc: 1 exceptions requiring attention
+• Innova Inc: 2 exceptions requiring attention
 
 RECOMMENDATIONS
 ---------------
-• Validation Success Rate: Excellent performance
-• Exception Handling: Minimal exceptions detected
+• Validation Success Rate: Review validation processes
+• Exception Handling: Multiple exceptions require process review
 • Customer Engagement: Focus on top contributing customers for relationship management
 
 END OF REPORT
