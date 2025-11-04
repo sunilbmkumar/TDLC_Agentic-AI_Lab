@@ -65,65 +65,237 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Sales Value Chart
-    {% if charts.sales_value %}
-    const salesCtx = document.getElementById('salesChart').getContext('2d');
-    const salesChart = new Chart(salesCtx, {
-        type: 'bar',
-        data: {
-            labels: {{ charts.sales_value.data|map(attribute='customer')|list|tojson }},
-            datasets: [{
-                label: 'Sales Value ($)',
-                data: {{ charts.sales_value.data|map(attribute='sales_value')|list|tojson }},
-                backgroundColor: 'rgba(102, 126, 234, 0.6)',
-                borderColor: 'rgba(102, 126, 234, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return '$' + value.toFixed(2);
-                        }
-                    }
-                }
-            }
-        }
-    });
-    {% endif %}
+    // Chart instances for theme updates
+    let salesChart = null;
+    let exceptionChart = null;
     
-    // Exception Count Chart
-    {% if charts.exception_count %}
-    const exceptionCtx = document.getElementById('exceptionChart').getContext('2d');
-    const exceptionChart = new Chart(exceptionCtx, {
-        type: 'bar',
-        data: {
-            labels: {{ charts.exception_count.data|map(attribute='customer')|list|tojson }},
-            datasets: [{
-                label: 'Exception Count',
-                data: {{ charts.exception_count.data|map(attribute='exception_count')|list|tojson }},
-                backgroundColor: 'rgba(220, 53, 69, 0.6)',
-                borderColor: 'rgba(220, 53, 69, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
+    /**
+     * Get current theme-aware colors from CSS variables with fallbacks
+     */
+    function getThemeColors() {
+        const root = document.documentElement;
+        const computedStyle = getComputedStyle(root);
+        
+        // Helper function to get CSS variable with fallback
+        function getCSSVar(varName, fallback) {
+            try {
+                const value = computedStyle.getPropertyValue(varName);
+                return (value && value.trim()) ? value.trim() : fallback;
+            } catch (e) {
+                return fallback;
+            }
+        }
+        
+        const colors = {
+            primary: {
+                background: getCSSVar('--chart-primary', 'rgba(102, 126, 234, 0.6)'),
+                border: getCSSVar('--chart-primary-border', 'rgba(102, 126, 234, 1)')
+            },
+            danger: {
+                background: getCSSVar('--chart-danger', 'rgba(220, 53, 69, 0.6)'),
+                border: getCSSVar('--chart-danger-border', 'rgba(220, 53, 69, 1)')
+            },
+            text: {
+                primary: getCSSVar('--text-primary', '#212529'),
+                secondary: getCSSVar('--text-secondary', '#495057')
+            },
+            grid: {
+                color: getCSSVar('--border-color', '#dee2e6')
+            }
+        };
+        
+        console.log('Theme colors loaded:', colors);
+        return colors;
+    }
+    
+    /**
+     * Get theme-aware chart options
+     */
+    function getThemeAwareOptions() {
+        const colors = getThemeColors();
+        
+        return {
             responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: colors.text.primary
+                    }
+                }
+            },
             scales: {
+                x: {
+                    ticks: {
+                        color: colors.text.secondary
+                    },
+                    grid: {
+                        color: colors.grid.color
+                    }
+                },
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        stepSize: 1
+                        color: colors.text.secondary
+                    },
+                    grid: {
+                        color: colors.grid.color
                     }
                 }
             }
+        };
+    }
+    
+    /**
+     * Safely destroy chart if it exists
+     */
+    function destroyChart(chart) {
+        if (chart && typeof chart.destroy === 'function') {
+            try {
+                chart.destroy();
+            } catch (e) {
+                console.warn('Error destroying chart:', e);
+            }
         }
+        return null;
+    }
+    
+    /**
+     * Create sales value chart
+     */
+    function createSalesChart() {
+        {% if charts.sales_value %}
+        console.log('Creating sales chart...');
+        try {
+            // Destroy existing chart
+            salesChart = destroyChart(salesChart);
+            
+            const canvas = document.getElementById('salesChart');
+            if (!canvas) {
+                console.error('Sales chart canvas not found');
+                return;
+            }
+            
+            const ctx = canvas.getContext('2d');
+            const colors = getThemeColors();
+            const options = getThemeAwareOptions();
+            
+            // Add custom formatting for sales chart
+            options.scales.y.ticks.callback = function(value) {
+                return '$' + value.toFixed(2);
+            };
+            
+            const chartData = {
+                labels: {{ charts.sales_value.data|map(attribute='customer')|list|tojson }},
+                datasets: [{
+                    label: 'Sales Value ($)',
+                    data: {{ charts.sales_value.data|map(attribute='sales_value')|list|tojson }},
+                    backgroundColor: colors.primary.background,
+                    borderColor: colors.primary.border,
+                    borderWidth: 1
+                }]
+            };
+            
+            salesChart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: options
+            });
+            
+            console.log('Sales chart created successfully');
+        } catch (error) {
+            console.error('Error creating sales chart:', error);
+        }
+        {% else %}
+        console.log('No sales chart data available');
+        {% endif %}
+    }
+    
+    /**
+     * Create exception count chart
+     */
+    function createExceptionChart() {
+        {% if charts.exception_count %}
+        console.log('Creating exception chart...');
+        try {
+            // Destroy existing chart
+            exceptionChart = destroyChart(exceptionChart);
+            
+            const canvas = document.getElementById('exceptionChart');
+            if (!canvas) {
+                console.error('Exception chart canvas not found');
+                return;
+            }
+            
+            const ctx = canvas.getContext('2d');
+            const colors = getThemeColors();
+            const options = getThemeAwareOptions();
+            
+            // Add custom formatting for exception chart
+            options.scales.y.ticks.stepSize = 1;
+            
+            const chartData = {
+                labels: {{ charts.exception_count.data|map(attribute='customer')|list|tojson }},
+                datasets: [{
+                    label: 'Exception Count',
+                    data: {{ charts.exception_count.data|map(attribute='exception_count')|list|tojson }},
+                    backgroundColor: colors.danger.background,
+                    borderColor: colors.danger.border,
+                    borderWidth: 1
+                }]
+            };
+            
+            exceptionChart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: options
+            });
+            
+            console.log('Exception chart created successfully');
+        } catch (error) {
+            console.error('Error creating exception chart:', error);
+        }
+        {% else %}
+        console.log('No exception chart data available');
+        {% endif %}
+    }
+    
+    /**
+     * Update all charts with current theme colors
+     * Called by the theme system in base.html
+     */
+    function updateChartsTheme(theme) {
+        console.log('Updating charts for theme:', theme);
+        // Small delay to ensure CSS variables are updated
+        setTimeout(() => {
+            createSalesChart();
+            createExceptionChart();
+        }, 100);
+    }
+    
+    /**
+     * Initialize charts when page loads
+     */
+    function initializeCharts() {
+        console.log('Initializing charts...');
+        try {
+            createSalesChart();
+            createExceptionChart();
+            console.log('Charts initialized successfully');
+        } catch (error) {
+            console.error('Error initializing charts:', error);
+        }
+    }
+    
+    // Initialize charts when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing charts');
+        // Small delay to ensure CSS is fully loaded
+        setTimeout(initializeCharts, 100);
     });
-    {% endif %}
+    
+    // Make updateChartsTheme globally available for theme system
+    window.updateChartsTheme = updateChartsTheme;
 </script>
 
 {% else %}

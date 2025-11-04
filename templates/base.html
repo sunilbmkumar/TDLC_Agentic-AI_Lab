@@ -1,10 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}PO to SO Agent Demo{% endblock %}</title>
     <style>
+        /* CSS Variables for Light Theme (Default) */
+        :root {
+            /* Background Colors */
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f8f9fa;
+            --bg-quaternary: #e9ecef;
+            
+            /* Text Colors */
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --text-disabled: #adb5bd;
+            
+            /* Border and Divider Colors */
+            --border-color: #dee2e6;
+            --border-light: #e9ecef;
+            --border-heavy: #ced4da;
+            
+            /* Accent Colors */
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --accent-tertiary: #5a6fd8;
+            
+            /* Status Colors */
+            --success-bg: #d1ecf1;
+            --success-text: #0c5460;
+            --success-border: #bee5eb;
+            --success-hover: #b8daff;
+            
+            --warning-bg: #fff3cd;
+            --warning-text: #856404;
+            --warning-border: #ffeaa7;
+            --warning-hover: #ffe8a1;
+            
+            --danger-bg: #f8d7da;
+            --danger-text: #721c24;
+            --danger-border: #f5c6cb;
+            --danger-hover: #f1b0b7;
+            
+            --info-bg: #d1ecf1;
+            --info-text: #0c5460;
+            --info-border: #bee5eb;
+            --info-hover: #b8daff;
+            
+            /* Interactive States */
+            --hover-bg: #f8f9fa;
+            --active-bg: #e9ecef;
+            --focus-ring: #667eea;
+            --nav-hover: #f8f9fa;
+            
+            /* Shadows and Elevation */
+            --shadow: rgba(0,0,0,0.1);
+            --shadow-hover: rgba(0,0,0,0.15);
+            --shadow-focus: rgba(102, 126, 234, 0.25);
+            --shadow-elevated: rgba(0,0,0,0.2);
+            
+            /* Chart and Data Visualization Colors */
+            --chart-primary: rgba(102, 126, 234, 0.6);
+            --chart-primary-border: rgba(102, 126, 234, 1);
+            --chart-secondary: rgba(118, 75, 162, 0.6);
+            --chart-secondary-border: rgba(118, 75, 162, 1);
+            --chart-success: rgba(40, 167, 69, 0.6);
+            --chart-success-border: rgba(40, 167, 69, 1);
+            --chart-warning: rgba(255, 193, 7, 0.6);
+            --chart-warning-border: rgba(255, 193, 7, 1);
+            --chart-danger: rgba(220, 53, 69, 0.6);
+            --chart-danger-border: rgba(220, 53, 69, 1);
+            
+            /* Input and Form Colors */
+            --input-bg: #ffffff;
+            --input-border: #ced4da;
+            --input-focus: #667eea;
+            --input-placeholder: #6c757d;
+            
+            /* Table and Grid Colors */
+            --table-header-bg: #f8f9fa;
+            --table-row-hover: #f8f9fa;
+            --table-row-selected: #e9ecef;
+            --table-border: #dee2e6;
+        }
+
+        /* CSS Variables for Dark Theme */
+        [data-theme="dark"] {
+            /* Background Colors */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #2a2a2a;
+            --bg-quaternary: #333333;
+            
+            /* Text Colors - High contrast for accessibility */
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --text-disabled: #666666;
+            
+            /* Border and Divider Colors */
+            --border-color: #404040;
+            --border-light: #333333;
+            --border-heavy: #555555;
+            
+            /* Accent Colors - Enhanced for dark theme */
+            --accent-primary: #8b9aff;
+            --accent-secondary: #9c7bdb;
+            --accent-tertiary: #6c7ce0;
+            
+            /* Status Colors - High contrast variants */
+            --success-bg: #0d3818;
+            --success-text: #66bb6a;
+            --success-border: #2e7d32;
+            --success-hover: #1b5e20;
+            
+            --warning-bg: #3d2f00;
+            --warning-text: #ffb74d;
+            --warning-border: #f57c00;
+            --warning-hover: #e65100;
+            
+            --danger-bg: #3d1a1a;
+            --danger-text: #ef5350;
+            --danger-border: #d32f2f;
+            --danger-hover: #c62828;
+            
+            --info-bg: #0d2a3d;
+            --info-text: #42a5f5;
+            --info-border: #1976d2;
+            --info-hover: #1565c0;
+            
+            /* Interactive States */
+            --hover-bg: #2a2a2a;
+            --active-bg: #333333;
+            --focus-ring: #8b9aff;
+            --nav-hover: #2a2a2a;
+            
+            /* Shadows and Elevation */
+            --shadow: rgba(0,0,0,0.4);
+            --shadow-hover: rgba(0,0,0,0.6);
+            --shadow-focus: rgba(139, 154, 255, 0.3);
+            --shadow-elevated: rgba(0,0,0,0.8);
+            
+            /* Chart and Data Visualization Colors */
+            --chart-primary: rgba(139, 154, 255, 0.8);
+            --chart-primary-border: rgba(139, 154, 255, 1);
+            --chart-secondary: rgba(156, 123, 219, 0.8);
+            --chart-secondary-border: rgba(156, 123, 219, 1);
+            --chart-success: rgba(102, 187, 106, 0.8);
+            --chart-success-border: rgba(102, 187, 106, 1);
+            --chart-warning: rgba(255, 183, 77, 0.8);
+            --chart-warning-border: rgba(255, 183, 77, 1);
+            --chart-danger: rgba(239, 83, 80, 0.8);
+            --chart-danger-border: rgba(239, 83, 80, 1);
+            
+            /* Input and Form Colors */
+            --input-bg: #2a2a2a;
+            --input-border: #404040;
+            --input-focus: #8b9aff;
+            --input-placeholder: #888888;
+            
+            /* Table and Grid Colors */
+            --table-header-bg: #2a2a2a;
+            --table-row-hover: #2a2a2a;
+            --table-row-selected: #333333;
+            --table-border: #404040;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,15 +177,17 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             color: white;
             padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px var(--shadow);
         }
         
         .header h1 {
@@ -30,30 +196,32 @@
         }
         
         .nav {
-            background: white;
+            background: var(--bg-secondary);
             padding: 0 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px var(--shadow);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .nav ul {
             list-style: none;
-            display: flex;
-            gap: 2rem;
         }
         
         .nav a {
             display: block;
             padding: 1rem 0;
             text-decoration: none;
-            color: #666;
+            color: var(--text-secondary);
             font-weight: 500;
             border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       border-bottom-color 0.3s ease,
+                       background-color 0.3s ease;
         }
         
         .nav a:hover, .nav a.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
+            color: var(--accent-primary);
+            border-bottom-color: var(--accent-primary);
         }
         
         .container {
@@ -63,17 +231,21 @@
         }
         
         .card {
-            background: white;
+            background: var(--bg-secondary);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px var(--shadow);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .card h2 {
-            color: #333;
+            color: var(--text-primary);
             margin-bottom: 1rem;
             font-size: 1.4rem;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .stats-grid {
@@ -84,25 +256,31 @@
         }
         
         .stat-card {
-            background: white;
+            background: var(--bg-secondary);
             padding: 1.5rem;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 4px var(--shadow);
+            border-left: 4px solid var(--accent-primary);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       transform 0.2s ease;
         }
         
         .stat-number {
             font-size: 2rem;
             font-weight: bold;
-            color: #667eea;
+            color: var(--accent-primary);
             display: block;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .stat-label {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.9rem;
             margin-top: 0.5rem;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .table {
@@ -115,39 +293,53 @@
         .table td {
             padding: 0.75rem;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--table-border);
         }
         
         .table th {
-            background-color: #f8f9fa;
+            background-color: var(--table-header-bg);
             font-weight: 600;
-            color: #555;
+            color: var(--text-secondary);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .table tr:hover {
-            background-color: #f8f9fa;
+            background-color: var(--table-row-hover);
+            transition: background-color 0.2s ease;
+        }
+        
+        .table td {
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .status-valid {
-            background-color: #d4edda;
-            color: #155724;
+            background-color: var(--success-bg);
+            color: var(--success-text);
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
             font-size: 0.85rem;
             font-weight: 500;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       transform 0.2s ease;
         }
         
         .status-exception {
-            background-color: #f8d7da;
-            color: #721c24;
+            background-color: var(--danger-bg);
+            color: var(--danger-text);
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
             font-size: 0.85rem;
             font-weight: 500;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       transform 0.2s ease;
         }
         
         .refresh-btn {
-            background: #667eea;
+            background: var(--accent-primary);
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -155,29 +347,143 @@
             cursor: pointer;
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                       transform 0.2s ease,
+                       box-shadow 0.3s ease;
         }
         
         .refresh-btn:hover {
-            background: #5a6fd8;
+            background: var(--accent-secondary);
+            transform: translateY(-1px);
         }
         
         .empty-state {
             text-align: center;
             padding: 3rem;
-            color: #666;
+            color: var(--text-secondary);
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .empty-state h3 {
             margin-bottom: 1rem;
-            color: #999;
+            color: var(--text-muted);
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .chart-container {
-            background: white;
+            background: var(--bg-secondary);
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px var(--shadow);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                       box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                       border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Theme Toggle Styles */
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--accent-primary);
+            transform: scale(1.05);
+        }
+        
+        .theme-toggle:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+        
+        .theme-icon {
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+        }
+        
+        .theme-icon.light-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+        
+        .theme-icon.dark-icon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0.5);
+        }
+        
+        [data-theme="dark"] .theme-icon.light-icon {
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+        }
+        
+        [data-theme="dark"] .theme-icon.dark-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        /* Enhanced Theme Transition Performance */
+        * {
+            /* Optimize transitions for better performance */
+            will-change: auto;
+        }
+        
+        /* Smooth theme transition for all elements */
+        *,
+        *::before,
+        *::after {
+            transition-property: background-color, color, border-color, box-shadow, opacity, transform;
+            transition-duration: 0.4s;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Prevent transition on page load */
+        .no-transition * {
+            transition: none !important;
+        }
+        
+        /* Hover effects with smooth transitions */
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-hover);
+        }
+        
+        .refresh-btn:hover {
+            box-shadow: 0 4px 8px var(--shadow-hover);
+        }
+        
+        /* Focus states with smooth transitions */
+        .theme-toggle:focus {
+            box-shadow: 0 0 0 3px var(--shadow-focus);
+        }
+        
+        /* Smooth status badge hover effects */
+        .status-valid:hover,
+        .status-exception:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -187,14 +493,20 @@
     </header>
     
     <nav class="nav">
-        <ul>
-            <li><a href="/" {% if request.endpoint == 'dashboard' %}class="active"{% endif %}>📊 Dashboard</a></li>
-            <li><a href="/validation" {% if request.endpoint == 'validation_results' %}class="active"{% endif %}>✅ Validation</a></li>
-            <li><a href="/sales-orders" {% if request.endpoint == 'sales_orders' %}class="active"{% endif %}>💰 Sales Orders</a></li>
-            <li><a href="/po-acknowledgments" {% if request.endpoint == 'po_acknowledgments' %}class="active"{% endif %}>📋 PO Acknowledgments</a></li>
-            <li><a href="/exceptions" {% if request.endpoint == 'exceptions' %}class="active"{% endif %}>⚠️ Exceptions</a></li>
-            <li><a href="/charts" {% if request.endpoint == 'charts' %}class="active"{% endif %}>📈 Charts</a></li>
-        </ul>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="/" {% if request.endpoint == 'dashboard' %}class="active"{% endif %}>📊 Dashboard</a></li>
+                <li><a href="/validation" {% if request.endpoint == 'validation_results' %}class="active"{% endif %}>✅ Validation</a></li>
+                <li><a href="/sales-orders" {% if request.endpoint == 'sales_orders' %}class="active"{% endif %}>💰 Sales Orders</a></li>
+                <li><a href="/po-acknowledgments" {% if request.endpoint == 'po_acknowledgments' %}class="active"{% endif %}>📋 PO Acknowledgments</a></li>
+                <li><a href="/exceptions" {% if request.endpoint == 'exceptions' %}class="active"{% endif %}>⚠️ Exceptions</a></li>
+                <li><a href="/charts" {% if request.endpoint == 'charts' %}class="active"{% endif %}>📈 Charts</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark theme" title="Toggle theme">
+                <span class="theme-icon light-icon">☀️</span>
+                <span class="theme-icon dark-icon">🌙</span>
+            </button>
+        </div>
     </nav>
     
     <div class="container">
@@ -204,6 +516,157 @@
     </div>
     
     <script>
+        // Theme Management System
+        const THEME_KEY = 'dashboard-theme';
+        const THEMES = {
+            LIGHT: 'light',
+            DARK: 'dark'
+        };
+        
+        /**
+         * Initialize theme on page load
+         */
+        function initializeTheme() {
+            try {
+                const savedTheme = loadTheme();
+                applyTheme(savedTheme);
+                updateToggleButton(savedTheme);
+            } catch (error) {
+                console.warn('Theme initialization failed:', error);
+                applyTheme(THEMES.LIGHT);
+            }
+        }
+        
+        /**
+         * Load theme preference from localStorage
+         * @returns {string} Theme name ('light' or 'dark')
+         */
+        function loadTheme() {
+            try {
+                const savedTheme = localStorage.getItem(THEME_KEY);
+                return savedTheme === THEMES.DARK ? THEMES.DARK : THEMES.LIGHT;
+            } catch (error) {
+                console.warn('Failed to load theme from localStorage:', error);
+                return THEMES.LIGHT;
+            }
+        }
+        
+        /**
+         * Save theme preference to localStorage
+         * @param {string} theme - Theme name to save
+         */
+        function saveTheme(theme) {
+            try {
+                localStorage.setItem(THEME_KEY, theme);
+            } catch (error) {
+                console.warn('Failed to save theme to localStorage:', error);
+            }
+        }
+        
+        /**
+         * Apply theme to the document
+         * @param {string} theme - Theme name to apply
+         */
+        function applyTheme(theme) {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', theme);
+            
+            // Update any charts if they exist
+            if (typeof updateChartsTheme === 'function') {
+                updateChartsTheme(theme);
+            }
+        }
+        
+        /**
+         * Update the theme toggle button appearance
+         * @param {string} theme - Current theme name
+         */
+        function updateToggleButton(theme) {
+            const toggleButton = document.getElementById('theme-toggle');
+            if (toggleButton) {
+                const isDark = theme === THEMES.DARK;
+                toggleButton.setAttribute('aria-label', 
+                    isDark ? 'Switch to light theme' : 'Switch to dark theme'
+                );
+                toggleButton.setAttribute('title', 
+                    isDark ? 'Switch to light theme' : 'Switch to dark theme'
+                );
+            }
+        }
+        
+        /**
+         * Toggle between light and dark themes
+         */
+        function toggleTheme() {
+            try {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
+                
+                applyTheme(newTheme);
+                saveTheme(newTheme);
+                updateToggleButton(newTheme);
+                
+                // Announce theme change for screen readers
+                announceThemeChange(newTheme);
+            } catch (error) {
+                console.error('Theme toggle failed:', error);
+            }
+        }
+        
+        /**
+         * Announce theme change for accessibility
+         * @param {string} theme - New theme name
+         */
+        function announceThemeChange(theme) {
+            const message = `Switched to ${theme} theme`;
+            
+            // Create temporary element for screen reader announcement
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.style.position = 'absolute';
+            announcement.style.left = '-10000px';
+            announcement.style.width = '1px';
+            announcement.style.height = '1px';
+            announcement.style.overflow = 'hidden';
+            
+            document.body.appendChild(announcement);
+            announcement.textContent = message;
+            
+            // Remove announcement element after delay
+            setTimeout(() => {
+                document.body.removeChild(announcement);
+            }, 1000);
+        }
+        
+        // Prevent transition flash on page load
+        document.documentElement.classList.add('no-transition');
+        
+        // Initialize theme when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+            
+            // Remove no-transition class after a brief delay to enable smooth transitions
+            setTimeout(() => {
+                document.documentElement.classList.remove('no-transition');
+            }, 100);
+            
+            // Add click event listener to theme toggle button
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+                
+                // Add keyboard support
+                themeToggle.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        toggleTheme();
+                    }
+                });
+            }
+        });
+        
+        // Data refresh functionality
         function refreshData() {
             fetch('/refresh')
                 .then(response => response.json())
